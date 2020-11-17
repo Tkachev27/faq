@@ -1,0 +1,62 @@
+<div class="center">
+    <button class="btn grey lighten-1 waves-effect" (click)="onAddItem()">
+        New Item
+    </button>
+</div>
+
+<div class="modal" #modal>
+    <div
+        class="modal-content"
+        [formGroup]="form"
+        *ngIf="!loadingModal; else loaderModal"
+    >
+        <h4 class="mb1">Create new item</h4>
+        <div class="" formGroupName="fields">
+            <div
+                class=""
+                *ngFor="
+                    let control of form.get('fields').controls;
+                    let idx = index
+                "
+            >
+                <label>{{ template.options[idx].name }}</label>
+                <input
+                    [formControlName]="idx"
+                    type="{{ template.options[idx].validators[0] }}"
+                    [ngClass]="{
+                        invalid: control.invalid && control.touched
+                    }"
+                    (keyup)="onChangeField()"
+                />
+
+                <span
+                    *ngIf="control.invalid && control.touched"
+                    class="helper-text red-text"
+                >
+                    The fiels should not be empty.
+                </span>
+            </div>
+        </div>
+    </div>
+    <ng-template #loaderModal>
+        <app-loader></app-loader>
+    </ng-template>
+
+    <div class="modal-footer">
+        <button
+            class="modal-action btn waves-effect"
+            type="button"
+            (click)="onModalSubmit()"
+            [disabled]="form.invalid"
+        >
+            Save
+        </button>
+        <button
+            type="button"
+            (click)="onModalCancel()"
+            class="modal-action waves-effect waves-black btn-flat"
+        >
+            Cancel
+        </button>
+    </div>
+</div>

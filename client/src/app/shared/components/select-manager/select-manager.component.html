@@ -1,0 +1,44 @@
+<table *ngIf="!loading; else loader">
+    <tbody class="collection mb1" *ngIf="items.length !== 0; else empty">
+        <tr *ngFor="let item of items; let i = index">
+            <td class="collection-item">
+                {{ item[template.options[0].name] }}
+                <p *ngFor="let option of template.options; let i = index">
+                    <span *ngIf="i != 0">{{ item[option.name] }}</span>
+                </p>
+            </td>
+            <td>
+                <label>
+                    <input
+                        name="{{ template.type }}"
+                        type="radio"
+                        (click)="onChangeItem(item)"
+                    />
+                    <span></span>
+                </label>
+            </td>
+            <td class="delete"
+                ><i (click)="onDelete(item)" class="material-icons"
+                    >delete</i
+                ></td
+            >
+        </tr>
+    </tbody>
+    <ng-template #empty>
+        <div class="center" *ngIf="template.type == 'SubsoilUser'"
+            >There are no items in category</div
+        >
+        <div class="center" *ngIf="template.type == 'Field'"
+            >There are no items in category or choose a subsoil user</div
+        >
+        <div class="center" *ngIf="template.type == 'Well'"
+            >There are no items in category or choose a field</div
+        >
+        <div class="center" *ngIf="template.type == 'Extraction'"
+            >There are no items in category or choose a well</div
+        ></ng-template
+    >
+</table>
+<ng-template #loader>
+    <app-loader></app-loader>
+</ng-template>
