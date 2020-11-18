@@ -1,23 +1,32 @@
 <table *ngIf="!loading; else loader">
+    <thead>
+        <tr>
+            <td class="collection-item">Question</td>
+            <td class="collection-item date">Date</td>
+            <td class="collection-item viewedNumber"
+                ><i class="material-icons">remove_red_eye</i></td
+            >
+            <td class="collection-item answersAmount">Answers</td
+            ><td class="collection-item delete" *ngIf="admin"></td>
+        </tr>
+    </thead>
     <tbody class="collection mb1" *ngIf="items.length !== 0; else empty">
         <tr *ngFor="let item of items; let i = index">
-            <td class="collection-item">
-                {{ item[template.options[0].name] }}
-                <p *ngFor="let option of template.options; let i = index">
-                    <span *ngIf="i != 0">{{ item[option.name] }}</span>
-                </p>
-            </td>
-            <td>
-                <label>
-                    <input
-                        name="{{ template.type }}"
-                        type="radio"
-                        (click)="onChangeItem(item)"
-                    />
-                    <span></span>
-                </label>
-            </td>
-            <td class="delete"
+            <td
+                class="collection-item content"
+                (click)="onQuestionSelect(item)"
+            >
+                {{ item.content }}</td
+            >
+            <td class="collection-item date"> {{ item.date }}</td>
+            <td class="collection-item viewedNumber">
+                {{ item.viewedNumber }}</td
+            >
+            <td class="collection-item answersAmount">
+                {{ item.answersAmount }}</td
+            >
+
+            <td class="collection-item delete" *ngIf="admin"
                 ><i (click)="onDelete(item)" class="material-icons"
                     >delete</i
                 ></td
@@ -25,19 +34,8 @@
         </tr>
     </tbody>
     <ng-template #empty>
-        <div class="center" *ngIf="template.type == 'SubsoilUser'"
-            >There are no items in category</div
-        >
-        <div class="center" *ngIf="template.type == 'Field'"
-            >There are no items in category or choose a subsoil user</div
-        >
-        <div class="center" *ngIf="template.type == 'Well'"
-            >There are no items in category or choose a field</div
-        >
-        <div class="center" *ngIf="template.type == 'Extraction'"
-            >There are no items in category or choose a well</div
-        ></ng-template
-    >
+        <div class="center">There are no items in category</div>
+    </ng-template>
 </table>
 <ng-template #loader>
     <app-loader></app-loader>

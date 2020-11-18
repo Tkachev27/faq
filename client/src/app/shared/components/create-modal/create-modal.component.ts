@@ -26,9 +26,7 @@ export class CreateModalComponent implements OnInit, AfterViewInit, OnDestroy {
     modal: MaterialInstance
     form: FormGroup
     loadingModal = false
-    @Input() id
-
-    @Input() template
+    @Input() categoryId
     @Input() service
     @Output('onChangeEvent') onChange = new EventEmitter<any>()
     constructor() {}
@@ -36,12 +34,8 @@ export class CreateModalComponent implements OnInit, AfterViewInit, OnDestroy {
     ngOnInit(): void {
         this.loadingModal = true
         this.form = new FormGroup({
-            fields: new FormArray([]),
+            content: new FormControl(null, Validators.required),
         })
-        for (let item of this.template.options) {
-            const control = new FormControl(null, Validators.required)
-            ;(this.form.get('fields') as FormArray).push(control)
-        }
 
         this.loadingModal = false
     }
@@ -55,10 +49,8 @@ export class CreateModalComponent implements OnInit, AfterViewInit, OnDestroy {
     }
     onModalSubmit() {
         let data: any = {
-            id: this.id,
-        }
-        for (let i = 0; i < this.template.options.length; i++) {
-            data[this.template.options[i].name] = this.form.value.fields[i]
+            content: this.form.value.content,
+            categoryId: this.categoryId,
         }
 
         this.service.create(data).subscribe(

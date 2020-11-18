@@ -12,7 +12,7 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
     links = [
         { url: '/adminhome', name: 'Home' },
         { url: '/adminquestions', name: 'Questions' },
-        { url: '/adminusersquestions', name: 'Users Questions' },
+        { url: '/adminusersquestions', name: `User's Questions` },
         { url: '/adminlogs', name: 'Logs' },
         { url: '/adminabout', name: 'About Us' },
     ]

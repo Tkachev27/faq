@@ -13,6 +13,7 @@ export interface Question {
     categoryId?: string
     viewedNumber?: number
     date?: Date
+    answersAmount?: number
 }
 
 export interface Answer {

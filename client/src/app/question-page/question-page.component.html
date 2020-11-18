@@ -1,1 +1,59 @@
-<p>question-page works!</p>
+<div class="row">
+    <div class="center header">
+        <h2> Questions </h2>
+    </div>
+    <div class="content" *ngIf="!loading; else loader">
+        <div class="category-create-input col s3" *ngIf="isAdmin">
+            <span>Create new category: </span
+            ><input type="text" [(ngModel)]="newCategoryName" />
+            <i *ngIf="newCategoryName == ''" class="material-icons invalid"
+                >check</i
+            >
+            <i
+                *ngIf="!newCategoryName == ''"
+                class="material-icons save"
+                (click)="saveNewCategory()"
+                >check</i
+            >
+        </div>
+        <div
+            class="categoryes-list col s12"
+            *ngIf="categories.length !== 0; else empty"
+        >
+            <div class="chip" *ngFor="let category of categories">
+                <span
+                    class=""
+                    [ngClass]="{
+                        active: category._id == selectedCategory._id
+                    }"
+                    (click)="onChangeSelectedCategory(category)"
+                    >{{ category.name }}</span
+                >
+                <i
+                    class="material-icons"
+                    *ngIf="isAdmin"
+                    (click)="onDeleteCategory(category)"
+                >
+                    close</i
+                >
+            </div>
+        </div>
+        <app-select-manager
+            class="col s10 offset-s1"
+            [items]="questions"
+            [user]="user"
+            (onDeleteEvent)="onDeleteQuestion($event)"
+        ></app-select-manager>
+        <app-create-modal
+            [categoryId]="selectedCategory._id"
+            [service]="questionService"
+            (onChangeEvent)="(newQuestionCreated)"
+        ></app-create-modal>
+        <ng-template #empty>
+            <div class="center">There are no Items </div>
+        </ng-template>
+    </div>
+    <ng-template #loader>
+        <app-loader></app-loader>
+    </ng-template>
+</div>

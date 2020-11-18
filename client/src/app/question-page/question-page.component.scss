@@ -1,0 +1,34 @@
+.header {
+    border-bottom: 1px solid #42a5f5;
+}
+.categoryes-list {
+    margin: 50px;
+    border-bottom: 1px solid #42a5f5;
+}
+.chip {
+    i {
+        vertical-align: middle;
+        cursor: pointer;
+        display: inline;
+    }
+    .active {
+        color: #42a5f5;
+    }
+    span {
+        cursor: pointer;
+    }
+}
+.save {
+    color: #42a5f5;
+}
+.invalid {
+    color: grey;
+}
+.category-create-input {
+    input {
+        width: 80%;
+    }
+    i.save {
+        cursor: pointer;
+    }
+}

@@ -10,7 +10,7 @@ export class QuestionService {
     constructor(private http: HttpClient) {}
 
     fetch(categoryId: string): Observable<Question[]> {
-        return this.http.get<Question[]>(`/api/question/add/${categoryId}`)
+        return this.http.get<Question[]>(`/api/question/all/${categoryId}`)
     }
     getById(question: Question): Observable<Question[]> {
         return this.http.get<Question[]>(`/api/question/${question._id}`)

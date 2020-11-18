@@ -1,3 +1,29 @@
 .delete {
     cursor: pointer;
 }
+table {
+    width: 100%;
+}
+td {
+    text-align: center;
+}
+td.delete {
+    width: 150px;
+}
+td.content {
+    width: auto;
+    &:hover {
+        background-color: #42a5f5;
+        color: #fff;
+        cursor: pointer;
+    }
+}
+td.date {
+    width: 300px;
+}
+td.viewedNumber {
+    width: 150px;
+}
+td.answersAmount {
+    width: 150px;
+}
