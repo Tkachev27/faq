@@ -17,7 +17,7 @@ export class LogService {
         return this.http.post<Log>('/api/log', log)
     }
 
-    delete(log: Log): Observable<Message> {
-        return this.http.delete<Message>(`/api/log/${log._id}`)
+    delete(): Observable<Message> {
+        return this.http.delete<Message>(`/api/log/`)
     }
 }

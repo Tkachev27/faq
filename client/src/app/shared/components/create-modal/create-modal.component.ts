@@ -9,7 +9,7 @@ import {
     Output,
     ViewChild,
 } from '@angular/core'
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms'
+import { FormControl, FormGroup, Validators } from '@angular/forms'
 
 import {
     MaterialInstance,
@@ -26,7 +26,9 @@ export class CreateModalComponent implements OnInit, AfterViewInit, OnDestroy {
     modal: MaterialInstance
     form: FormGroup
     loadingModal = false
-    @Input() categoryId
+    @Input() user: string
+    @Input() page: string
+    @Input() id
     @Input() service
     @Output('onChangeEvent') onChange = new EventEmitter<any>()
     constructor() {}
@@ -34,7 +36,7 @@ export class CreateModalComponent implements OnInit, AfterViewInit, OnDestroy {
     ngOnInit(): void {
         this.loadingModal = true
         this.form = new FormGroup({
-            content: new FormControl(null, Validators.required),
+            content: new FormControl('', Validators.required),
         })
 
         this.loadingModal = false
@@ -48,10 +50,20 @@ export class CreateModalComponent implements OnInit, AfterViewInit, OnDestroy {
         MaterialService.updateTextInputs()
     }
     onModalSubmit() {
-        let data: any = {
-            content: this.form.value.content,
-            categoryId: this.categoryId,
+        let data: any = {}
+        if (this.page == 'question') {
+            data = {
+                content: this.form.value.content,
+                categoryId: this.id,
+            }
         }
+        if (this.page == 'answer') {
+            data = {
+                content: this.form.value.content,
+                questionId: this.id,
+            }
+        }
+        console.log(data)
 
         this.service.create(data).subscribe(
             (data) => {
@@ -68,5 +80,4 @@ export class CreateModalComponent implements OnInit, AfterViewInit, OnDestroy {
     ngOnDestroy() {
         this.modal.destroy()
     }
-    onChangeField() {}
 }

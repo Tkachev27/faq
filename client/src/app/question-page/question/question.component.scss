@@ -1,0 +1,12 @@
+.header {
+    border-bottom: 1px solid #42a5f5;
+}
+.content-fields {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+.question {
+    border-bottom: 1px solid #42a5f5;
+    padding: 50px;
+}

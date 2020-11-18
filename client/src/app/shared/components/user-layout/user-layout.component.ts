@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { AuthService } from '../../services/auth.service'
+import { LogService } from '../../services/log.service'
 
 @Component({
     selector: 'app-user-layout',
@@ -15,13 +16,21 @@ export class UserLayoutComponent implements OnInit, AfterViewInit {
         { url: '/userabout', name: 'About Us' },
     ]
     searchPhrase: string
-    constructor(private router: Router, private auth: AuthService) {}
+    constructor(
+        private router: Router,
+        private auth: AuthService,
+        private logService: LogService
+    ) {}
 
     ngAfterViewInit(): void {}
 
     ngOnInit(): void {}
 
-    onPageChange(url: string) {}
+    onPageChange(url: string) {
+        this.logService
+            .create({ action: `following a link: ${url}` })
+            .subscribe(() => {})
+    }
     logout() {
         this.auth.logout()
         this.router.navigate(['/home'])

@@ -12,8 +12,11 @@ export class QuestionService {
     fetch(categoryId: string): Observable<Question[]> {
         return this.http.get<Question[]>(`/api/question/all/${categoryId}`)
     }
-    getById(question: Question): Observable<Question[]> {
-        return this.http.get<Question[]>(`/api/question/${question._id}`)
+    getById(id: String): Observable<Question> {
+        return this.http.get<Question>(`/api/question/${id}`)
+    }
+    getByIdUser(id: String): Observable<any> {
+        return this.http.get<any>(`/api/question/user/${id}`)
     }
 
     create(question: Question): Observable<Question> {

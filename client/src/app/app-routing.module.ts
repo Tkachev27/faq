@@ -13,6 +13,7 @@ import { AboutPageComponent } from './about-page/about-page.component'
 import { UsersQuestionsPageComponent } from './users-questions-page/users-questions-page.component'
 import { LogsPageComponent } from './logs-page/logs-page.component'
 import { SearchPageComponent } from './search-page/search-page.component'
+import { QuestionUserComponent } from './question-page/question-user/question-user.component'
 
 //import { VendorListComponent } from './vendor-list/vendor-list.component'
 
@@ -40,7 +41,7 @@ const routes: Routes = [
             { path: 'userquestions', component: QuestionPageComponent },
             { path: 'userquestions/:id', component: QuestionComponent },
             { path: 'usermyquestions', component: UsersQuestionsPageComponent },
-            { path: 'usermyquestions/:id', component: QuestionComponent },
+            { path: 'usermyquestions/:id', component: QuestionUserComponent },
             { path: 'userabout', component: AboutPageComponent },
             { path: 'usersearch/:req', component: SearchPageComponent },
         ],
@@ -53,12 +54,15 @@ const routes: Routes = [
             { path: '', redirectTo: '/adminhome', pathMatch: 'full' },
             { path: 'adminhome', component: HomePageComponent },
             { path: 'adminquestions', component: QuestionPageComponent },
-            { path: 'adminquestions/:id', component: QuestionComponent },
+            { path: 'adminquestions/:id', component: QuestionUserComponent },
             {
                 path: 'adminusersquestions',
                 component: UsersQuestionsPageComponent,
             },
-            { path: 'adminusersquestions/:id', component: QuestionComponent },
+            {
+                path: 'adminusersquestions/:id',
+                component: QuestionUserComponent,
+            },
             { path: 'adminlogs', component: LogsPageComponent },
             { path: 'adminabout', component: AboutPageComponent },
             { path: 'adminsearch/:req', component: SearchPageComponent },

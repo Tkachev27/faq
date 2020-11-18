@@ -1,0 +1,10 @@
+<div class="input-field">
+    <select #select [(ngModel)]="modelSelect" (change)="onChangeSelect()">
+        <option value="" disabled selected>Choose {{ label }}</option>
+        <option
+            *ngFor="let option of optionList; let i = index"
+            [ngValue]="option"
+            >{{ option }}
+        </option> </select
+    ><label>Select {{ label }}<span class="required">*</span> </label>
+</div>

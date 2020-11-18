@@ -1,1 +1,43 @@
-<p>logs-page works!</p>
+<div class="log-page row">
+    <div class="center header">
+        <h2> Logs </h2>
+    </div>
+    <div class="col s6 offset-s3" *ngIf="!loading; else loader">
+        <div class="" *ngIf="logs.length !== 0; else empty">
+            <app-select
+                class="col s6"
+                [optionList]="optionList"
+                [label]="label"
+                (onChangeSelect)="updateSelectedUser($event)"
+            ></app-select>
+            <button class="btn red waves-effect" (click)="deleteAllLogs()"
+                >Delete All</button
+            >
+            <div class="card-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <td>User Id</td>
+                            <td>Log Date</td><td>Action</td></tr
+                        >
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let log of logsShow"
+                            ><td>{{ log.userId }}</td> <td>{{ log.date }}</td
+                            ><td>{{ log.action }}</td></tr
+                        >
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <ng-template #empty>
+        <div class="center col s6 offset-s3">
+            There are no Items in the category
+        </div>
+    </ng-template>
+
+    <ng-template #loader>
+        <app-loader></app-loader>
+    </ng-template>
+</div>

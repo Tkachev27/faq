@@ -15,6 +15,7 @@ export class QuestionComponent implements OnInit {
     loading = false
     question: Question
     answers: Array<Answer> = []
+
     constructor(
         private route: ActivatedRoute,
         private questionService: QuestionService,
@@ -38,8 +39,8 @@ export class QuestionComponent implements OnInit {
                 this.answerService.fetch(question._id).subscribe((answers) => {
                     this.answers = answers
                     this.question = question
+
                     this.loading = false
-                    console.log(this.question)
                 })
             })
     }

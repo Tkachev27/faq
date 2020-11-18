@@ -38,17 +38,23 @@
                 >
             </div>
         </div>
+
         <app-select-manager
             class="col s10 offset-s1"
             [items]="questions"
             [user]="user"
             (onDeleteEvent)="onDeleteQuestion($event)"
         ></app-select-manager>
+
         <app-create-modal
-            [categoryId]="selectedCategory._id"
+            class="col s10 offset-s1"
+            [id]="selectedCategory._id"
             [service]="questionService"
-            (onChangeEvent)="(newQuestionCreated)"
+            [user]="user"
+            [page]="page"
+            (onChangeEvent)="newQuestionCreated($event)"
         ></app-create-modal>
+
         <ng-template #empty>
             <div class="center">There are no Items </div>
         </ng-template>

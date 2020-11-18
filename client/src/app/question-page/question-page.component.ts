@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { Category, Question } from '../shared/interfaces'
 import { AuthService } from '../shared/services/auth.service'
 import { CategoryService } from '../shared/services/category.service'
+import { LogService } from '../shared/services/log.service'
 import { MaterialService } from '../shared/services/Material.service'
 import { QuestionService } from '../shared/services/question.service'
 
@@ -15,7 +16,7 @@ export class QuestionPageComponent implements OnInit {
     categories: Array<Category> = []
     selectedCategory: Category = {}
     questions: Array<Question> = []
-
+    page = 'question'
     newCategoryName = ''
 
     isAdmin = false
@@ -24,7 +25,8 @@ export class QuestionPageComponent implements OnInit {
     constructor(
         private categoryService: CategoryService,
         public questionService: QuestionService,
-        private auth: AuthService
+        private auth: AuthService,
+        private logService: LogService
     ) {}
 
     async ngOnInit() {
@@ -100,6 +102,9 @@ export class QuestionPageComponent implements OnInit {
     async onChangeSelectedCategory(category: Category) {
         this.loading = true
         this.selectedCategory = category
+        this.logService
+            .create({ action: `category selected: ${category.name}` })
+            .subscribe(() => {})
         let questionsPromise = new Promise<Array<Category>>(
             (resolve, reject) => {
                 this.questionService.fetch(this.selectedCategory._id).subscribe(
@@ -113,7 +118,7 @@ export class QuestionPageComponent implements OnInit {
         )
 
         this.questions = await questionsPromise
-        console.log(this.questions)
+
         this.loading = false
     }
     onDeleteQuestion(question: Question) {
@@ -122,6 +127,9 @@ export class QuestionPageComponent implements OnInit {
             this.questionService.delete(question).subscribe(
                 (response) => {
                     MaterialService.toast(response.message)
+                    this.logService
+                        .create({ action: `question delated` })
+                        .subscribe(() => {})
                     this.questions.splice(
                         this.questions.findIndex((p) => p._id == question._id),
                         1
@@ -130,5 +138,11 @@ export class QuestionPageComponent implements OnInit {
                 (error) => MaterialService.toast(error.error.message)
             )
         }
+    }
+    newQuestionCreated(question: Question) {
+        this.questions.push(question)
+        this.logService
+            .create({ action: `question created` })
+            .subscribe(() => {})
     }
 }

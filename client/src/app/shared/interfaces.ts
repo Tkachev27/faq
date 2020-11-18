@@ -21,6 +21,7 @@ export interface Answer {
     content?: string
     userid?: string
     date?: Date
+    questionId?: string
 }
 
 export interface Category {

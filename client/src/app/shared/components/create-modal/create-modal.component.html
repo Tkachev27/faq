@@ -1,46 +1,62 @@
-<div class="center">
-    <button class="btn grey lighten-1 waves-effect" (click)="onAddItem()">
+<div class="center" *ngIf="page == 'question'">
+    <button
+        class="btn blue lighten-1 waves-effect"
+        (click)="onAddItem()"
+        *ngIf="user != ''"
+    >
         Ask Question
+    </button>
+</div>
+<div class="center" *ngIf="page == 'answer'">
+    <button class="btn blue lighten-1 waves-effect" (click)="onAddItem()">
+        New Answer
     </button>
 </div>
 
 <div class="modal" #modal>
-    <div
+    <form
         class="modal-content"
         [formGroup]="form"
         *ngIf="!loadingModal; else loaderModal"
     >
-        <h4 class="mb1">Ask new Question</h4>
-
-        <label>Question</label>
-        <input
-            [formControlName]="content"
-            type="text"
-            [ngClass]="{
-                invalid: content.invalid && content.touched
-            }"
-            (keyup)="onChangeField()"
-        />
-
-        <span
-            *ngIf="content.invalid && content.touched"
-            class="helper-text red-text"
-        >
-            The field should not be empty.
-        </span>
-    </div>
+        <h4 class="mb1" *ngIf="page == 'question'">Ask new Question</h4>
+        <h4 class="mb1" *ngIf="page == 'answer'">Add new Answer</h4>
+        <div class="input-field">
+            <input
+                formControlName="content"
+                id="content"
+                type="text"
+                [ngClass]="{
+                    invalid:
+                        form.get('content').invalid &&
+                        form.get('content').touched
+                }"
+            />
+            <label for="content" *ngIf="page == 'question'">Question</label>
+            <label for="content" *ngIf="page == 'answer'">Answer</label
+            ><span
+                *ngIf="
+                    form.get('content').invalid && form.get('content').touched
+                "
+                class="helper-text red-text"
+            >
+                The field should not be empty.
+            </span>
+        </div>
+    </form>
     <ng-template #loaderModal>
         <app-loader></app-loader>
     </ng-template>
 
     <div class="modal-footer">
         <button
-            class="modal-action btn waves-effect"
+            class="modal-action blue lighten-1 btn waves-effect"
             type="button"
             (click)="onModalSubmit()"
             [disabled]="form.invalid"
         >
-            Save
+            <span *ngIf="page == 'question'">Ask</span>
+            <span *ngIf="page == 'answer'">Add</span>
         </button>
         <button
             type="button"

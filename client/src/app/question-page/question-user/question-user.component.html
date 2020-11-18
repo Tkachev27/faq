@@ -17,14 +17,28 @@
         </div>
         <div class="answers col s12" *ngIf="answers.length !== 0; else empty">
             <div class="answer" *ngFor="let answer of answers">
-                <h4 class="center"> {{ answer.content }}</h4>
+                <h4 class="center"> {{ answer.answer.content }}</h4>
+                <div class="delete" *ngIf="answer.admin">
+                    <i
+                        class="material-icons"
+                        (click)="onDeleteAnswer(answer.answer)"
+                        >clear</i
+                    >
+                </div>
 
-                <div class="content__item">Date: {{ answer.date }}</div>
+                <div class="content__item">Date: {{ answer.answer.date }}</div>
             </div>
         </div>
         <ng-template #empty>
             <div class="center">There are no Answers </div>
         </ng-template>
+        <app-create-modal
+            class="col s10 offset-s1"
+            [id]="question._id"
+            [page]="page"
+            [service]="answerService"
+            (onChangeEvent)="newAnswerCreated($event)"
+        ></app-create-modal>
     </div>
     <ng-template #loader>
         <app-loader></app-loader>

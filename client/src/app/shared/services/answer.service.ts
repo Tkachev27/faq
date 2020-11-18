@@ -12,6 +12,9 @@ export class AnswerService {
     fetch(questionId: string): Observable<Answer[]> {
         return this.http.get<Answer[]>(`/api/answer/${questionId}`)
     }
+    fetchUser(questionId: string): Observable<any[]> {
+        return this.http.get<any[]>(`/api/answer/user/${questionId}`)
+    }
 
     create(answer: Answer): Observable<Answer> {
         return this.http.post<Answer>('/api/answer', answer)
