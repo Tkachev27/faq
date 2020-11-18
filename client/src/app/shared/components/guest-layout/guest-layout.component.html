@@ -1,17 +1,27 @@
 <div class="row page">
+    <main class="col s9 offset-s2">
+        <router-outlet></router-outlet>
+    </main>
     <div class="nav col s2">
         <div class="logo" [routerLink]="links[0].url">
             <img src="https://pirat.biz/styles/piratebay/img/faq.png" alt="" />
         </div>
-        <form class="search">
+        <div class="search">
             <div class="input-field">
-                <input type="search" required />
+                <input
+                    type="search"
+                    required
+                    [(ngModel)]="searchPhrase"
+                    (keydown.enter)="onSearchStart()"
+                />
                 <label class="label-icon" for="search"
-                    ><i class="material-icons">search</i></label
+                    ><i class="material-icons" (click)="onSearchStart()"
+                        >search</i
+                    ></label
                 >
-                <i class="material-icons">close</i>
+                <i class="material-icons" (click)="onSearchCancel()">close</i>
             </div>
-        </form>
+        </div>
         <div class="collection">
             <a
                 *ngFor="let link of links"
@@ -25,7 +35,4 @@
 
         <app-auth-modal></app-auth-modal>
     </div>
-    <main class="col s9 offset-s2">
-        <router-outlet></router-outlet>
-    </main>
 </div>

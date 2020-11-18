@@ -15,7 +15,13 @@ import { TokenInterceptor } from './shared/services/token.interceptor'
 import { GuestLayoutComponent } from './shared/components/guest-layout/guest-layout.component'
 import { UserLayoutComponent } from './shared/components/user-layout/user-layout.component'
 import { AdminLayoutComponent } from './shared/components/admin-layout/admin-layout.component'
-import { AuthModalComponent } from './shared/components/auth-modal/auth-modal.component'
+import { AuthModalComponent } from './shared/components/auth-modal/auth-modal.component';
+import { QuestionPageComponent } from './question-page/question-page.component';
+import { AboutPageComponent } from './about-page/about-page.component';
+import { LogsPageComponent } from './logs-page/logs-page.component';
+import { UsersQuestionsPageComponent } from './users-questions-page/users-questions-page.component';
+import { QuestionComponent } from './question-page/question/question.component';
+import { SearchPageComponent } from './search-page/search-page.component'
 
 @NgModule({
     declarations: [
@@ -28,6 +34,12 @@ import { AuthModalComponent } from './shared/components/auth-modal/auth-modal.co
         UserLayoutComponent,
         AdminLayoutComponent,
         AuthModalComponent,
+        QuestionPageComponent,
+        AboutPageComponent,
+        LogsPageComponent,
+        UsersQuestionsPageComponent,
+        QuestionComponent,
+        SearchPageComponent,
     ],
     imports: [
         AppRoutingModule,

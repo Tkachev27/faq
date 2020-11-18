@@ -12,6 +12,7 @@ export class GuestLayoutComponent implements OnInit, AfterViewInit {
         { url: '/questions', name: 'Questions' },
         { url: '/about', name: 'About Us' },
     ]
+    searchPhrase: string
     constructor(private router: Router) {}
 
     ngAfterViewInit(): void {}
@@ -20,4 +21,12 @@ export class GuestLayoutComponent implements OnInit, AfterViewInit {
 
     onPageChange(url: string) {}
     logIn() {}
+    onSearchStart() {
+        if (this.searchPhrase) {
+            this.router.navigate(['/search', this.searchPhrase])
+        }
+    }
+    onSearchCancel() {
+        this.searchPhrase = ''
+    }
 }

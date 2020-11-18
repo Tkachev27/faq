@@ -8,6 +8,7 @@ import { AuthService } from '../../services/auth.service'
     styleUrls: ['./admin-layout.component.scss'],
 })
 export class AdminLayoutComponent implements OnInit, AfterViewInit {
+    searchPhrase
     links = [
         { url: '/adminhome', name: 'Home' },
         { url: '/adminquestions', name: 'Questions' },
@@ -15,12 +16,23 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
         { url: '/adminlogs', name: 'Logs' },
         { url: '/adminabout', name: 'About Us' },
     ]
-    constructor(private router: Router) {}
+    constructor(private router: Router, private auth: AuthService) {}
 
     ngAfterViewInit(): void {}
 
     ngOnInit(): void {}
 
     onPageChange(url: string) {}
-    logOut() {}
+    logout() {
+        this.auth.logout()
+        this.router.navigate(['/home'])
+    }
+    onSearchStart() {
+        if (this.searchPhrase) {
+            this.router.navigate(['/adminsearch', this.searchPhrase])
+        }
+    }
+    onSearchCancel() {
+        this.searchPhrase = ''
+    }
 }

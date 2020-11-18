@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
+import { AuthService } from '../../services/auth.service'
 
 @Component({
     selector: 'app-user-layout',
@@ -13,12 +14,24 @@ export class UserLayoutComponent implements OnInit, AfterViewInit {
         { url: '/usermyquestions', name: 'My Questions' },
         { url: '/userabout', name: 'About Us' },
     ]
-    constructor(private router: Router) {}
+    searchPhrase: string
+    constructor(private router: Router, private auth: AuthService) {}
 
     ngAfterViewInit(): void {}
 
     ngOnInit(): void {}
 
     onPageChange(url: string) {}
-    logOut() {}
+    logout() {
+        this.auth.logout()
+        this.router.navigate(['/home'])
+    }
+    onSearchStart() {
+        if (this.searchPhrase) {
+            this.router.navigate(['/usersearch', this.searchPhrase])
+        }
+    }
+    onSearchCancel() {
+        this.searchPhrase = ''
+    }
 }

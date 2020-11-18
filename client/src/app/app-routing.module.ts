@@ -7,6 +7,12 @@ import { AdminGuard } from './shared/services/adminGuard.service'
 import { GuestLayoutComponent } from './shared/components/guest-layout/guest-layout.component'
 import { UserLayoutComponent } from './shared/components/user-layout/user-layout.component'
 import { AdminLayoutComponent } from './shared/components/admin-layout/admin-layout.component'
+import { QuestionPageComponent } from './question-page/question-page.component'
+import { QuestionComponent } from './question-page/question/question.component'
+import { AboutPageComponent } from './about-page/about-page.component'
+import { UsersQuestionsPageComponent } from './users-questions-page/users-questions-page.component'
+import { LogsPageComponent } from './logs-page/logs-page.component'
+import { SearchPageComponent } from './search-page/search-page.component'
 
 //import { VendorListComponent } from './vendor-list/vendor-list.component'
 
@@ -18,9 +24,10 @@ const routes: Routes = [
         children: [
             { path: '', redirectTo: '/home', pathMatch: 'full' },
             { path: 'home', component: HomePageComponent },
-            { path: 'questions', component: HomePageComponent },
-            { path: 'questions/:id', component: HomePageComponent },
-            { path: 'about', component: HomePageComponent },
+            { path: 'questions', component: QuestionPageComponent },
+            { path: 'questions/:id', component: QuestionComponent },
+            { path: 'about', component: AboutPageComponent },
+            { path: 'search/:req', component: SearchPageComponent },
         ],
     },
     {
@@ -30,11 +37,12 @@ const routes: Routes = [
         children: [
             { path: '', redirectTo: '/userhome', pathMatch: 'full' },
             { path: 'userhome', component: HomePageComponent },
-            { path: 'userquestions', component: HomePageComponent },
-            { path: 'userquestions/:id', component: HomePageComponent },
-            { path: 'usermyquestions', component: HomePageComponent },
-            { path: 'usermyquestions/:id', component: HomePageComponent },
-            { path: 'userabout', component: HomePageComponent },
+            { path: 'userquestions', component: QuestionPageComponent },
+            { path: 'userquestions/:id', component: QuestionComponent },
+            { path: 'usermyquestions', component: UsersQuestionsPageComponent },
+            { path: 'usermyquestions/:id', component: QuestionComponent },
+            { path: 'userabout', component: AboutPageComponent },
+            { path: 'usersearch/:req', component: SearchPageComponent },
         ],
     },
     {
@@ -44,12 +52,16 @@ const routes: Routes = [
         children: [
             { path: '', redirectTo: '/adminhome', pathMatch: 'full' },
             { path: 'adminhome', component: HomePageComponent },
-            { path: 'adminquestions', component: HomePageComponent },
-            { path: 'adminquestions/:id', component: HomePageComponent },
-            { path: 'adminusersquestions', component: HomePageComponent },
-            { path: 'adminusersquestions/:id', component: HomePageComponent },
-            { path: 'adminlogs', component: HomePageComponent },
-            { path: 'adminabout', component: HomePageComponent },
+            { path: 'adminquestions', component: QuestionPageComponent },
+            { path: 'adminquestions/:id', component: QuestionComponent },
+            {
+                path: 'adminusersquestions',
+                component: UsersQuestionsPageComponent,
+            },
+            { path: 'adminusersquestions/:id', component: QuestionComponent },
+            { path: 'adminlogs', component: LogsPageComponent },
+            { path: 'adminabout', component: AboutPageComponent },
+            { path: 'adminsearch/:req', component: SearchPageComponent },
         ],
     },
 ]
