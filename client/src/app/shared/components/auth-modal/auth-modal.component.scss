@@ -1,0 +1,9 @@
+//#e3f2fd blue lighten-5
+.tabs .tab a {
+    color: #e3f2fd;
+    cursor: pointer;
+}
+.tabs .tab a:hover,
+.tabs .tab a.active {
+    color: #42a5f5;
+}

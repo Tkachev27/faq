@@ -1,0 +1,35 @@
+.page {
+    height: 100%;
+    width: 100%;
+}
+.nav {
+    height: 100%;
+    border-right: 1px solid #42a5f5;
+    background-color: #fff;
+    position: fixed;
+}
+.logo {
+    width: 100%;
+    margin-top: 50px;
+    cursor: pointer;
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.search {
+    margin: 50px 0;
+}
+.collection {
+    margin: 50px 0;
+}
+//#42a5f5 blue lighten-1
+.collection .collection-item.active {
+    background-color: #42a5f5;
+    color: #eafaf9;
+}
+.collection .collection-item {
+    // background-color: #42a5f5;
+    color: #42a5f5;
+}

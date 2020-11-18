@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
+import { AuthService } from '../shared/services/auth.service'
 
 @Component({
     selector: 'app-home-page',
@@ -6,7 +8,19 @@ import { Component, OnInit } from '@angular/core'
     styleUrls: ['./home-page.component.scss'],
 })
 export class HomePageComponent implements OnInit {
-    constructor() {}
+    isAdmin = false
+    isUser = false
+    isGuest = false
+    constructor(private auth: AuthService, private router: Router) {}
 
-    async ngOnInit() {}
+    ngOnInit() {
+        this.isAdmin = this.auth.isAdmin()
+        this.isUser = this.auth.isAuthenticated() && !this.isAdmin
+        this.isGuest = !(this.isAdmin || this.isUser)
+    }
+    onAction() {
+        if (this.isAdmin) this.router.navigate(['/adminquestions'])
+        if (this.isUser) this.router.navigate(['/userquestions'])
+        if (this.isGuest) this.router.navigate(['/questions'])
+    }
 }

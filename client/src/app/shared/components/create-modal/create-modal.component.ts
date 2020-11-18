@@ -10,7 +10,7 @@ import {
     ViewChild,
 } from '@angular/core'
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms'
-import { SubsoilUser } from '../../interfaces'
+
 import {
     MaterialInstance,
     MaterialService,
@@ -30,7 +30,7 @@ export class CreateModalComponent implements OnInit, AfterViewInit, OnDestroy {
 
     @Input() template
     @Input() service
-    @Output('onChangeEvent') onChange = new EventEmitter<SubsoilUser>()
+    @Output('onChangeEvent') onChange = new EventEmitter<any>()
     constructor() {}
 
     ngOnInit(): void {

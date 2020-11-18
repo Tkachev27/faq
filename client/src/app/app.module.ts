@@ -6,28 +6,28 @@ import { AppRoutingModule } from './app-routing.module'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 
-import { SiteLayoutComponent } from './shared/components/site-layout/site-layout.component'
-
 import { HomePageComponent } from './home-page/home-page.component'
 import { SelectManagerComponent } from './shared/components/select-manager/select-manager.component'
 import { LoaderComponent } from './shared/components/loader/loader.component'
 import { CreateModalComponent } from './shared/components/create-modal/create-modal.component'
 import { TokenInterceptor } from './shared/services/token.interceptor'
-import { AuthLayoutComponent } from './shared/components/auth-layout/auth-layout.component'
-import { LoginPageComponent } from './shared/components/login-page/login-page.component'
-import { RegisterPageComponent } from './shared/components/register-page/register-page.component'
+
+import { GuestLayoutComponent } from './shared/components/guest-layout/guest-layout.component'
+import { UserLayoutComponent } from './shared/components/user-layout/user-layout.component'
+import { AdminLayoutComponent } from './shared/components/admin-layout/admin-layout.component'
+import { AuthModalComponent } from './shared/components/auth-modal/auth-modal.component'
 
 @NgModule({
     declarations: [
         AppComponent,
-        AuthLayoutComponent,
-        LoginPageComponent,
-        RegisterPageComponent,
-        SiteLayoutComponent,
         HomePageComponent,
         SelectManagerComponent,
         LoaderComponent,
         CreateModalComponent,
+        GuestLayoutComponent,
+        UserLayoutComponent,
+        AdminLayoutComponent,
+        AuthModalComponent,
     ],
     imports: [
         AppRoutingModule,

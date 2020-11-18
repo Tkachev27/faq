@@ -1,7 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 
-import { SubsoilUser } from '../../interfaces'
-
 @Component({
     selector: 'app-select-manager',
     templateUrl: './select-manager.component.html',
@@ -10,8 +8,8 @@ import { SubsoilUser } from '../../interfaces'
 export class SelectManagerComponent implements OnInit {
     @Input() items: Array<any>
     @Input() template
-    @Output('onChangeEvent') onChange = new EventEmitter<SubsoilUser>()
-    @Output('onDeleteEvent') onDel = new EventEmitter<SubsoilUser>()
+    @Output('onChangeEvent') onChange = new EventEmitter<any>()
+    @Output('onDeleteEvent') onDel = new EventEmitter<any>()
     loading = false
 
     constructor() {}

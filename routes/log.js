@@ -1,18 +1,19 @@
 const express = require('express')
 const passport = require('passport')
-const controller = require('../controllers/subsoilUser')
+const controller = require('../controllers/log')
 const router = express.Router()
 
-router.get(
-    '/',
-    passport.authenticate('jwt', { session: false }),
-    controller.getAll
-)
 router.post(
     '/',
     passport.authenticate('jwt', { session: false }),
     controller.create
 )
+router.get(
+    '/',
+    passport.authenticate('jwt', { session: false }),
+    controller.getAll
+)
+
 router.delete(
     '/:id',
     passport.authenticate('jwt', { session: false }),
@@ -20,15 +21,3 @@ router.delete(
 )
 
 module.exports = router
-
-// router.patch(
-//     '/:id',
-//     passport.authenticate('jwt', { session: false }),
-//     controller.update
-// )
-
-// router.get(
-//     '/:id',
-//     passport.authenticate('jwt', { session: false }),
-//     controller.getById
-// )
