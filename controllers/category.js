@@ -1,4 +1,6 @@
 const Category = require('../models/category')
+const Question = require('../models/question')
+
 const errorHandler = require('../utils/errorHandler')
 
 module.exports.create = async function (req, res) {
@@ -21,10 +23,18 @@ module.exports.getAll = async function (req, res) {
 
 module.exports.remove = async function (req, res) {
     try {
-        await Category.remove({ _id: req.params.id })
-        res.status(200).json({
-            message: 'Category delated.',
-        })
+        const questions = await Question.find({ categoryId: req.params.id })
+        if (questions.length == 0) {
+            await Category.remove({ _id: req.params.id })
+            res.status(200).json({
+                message: 'Category delated.',
+            })
+        } else {
+            res.status(500).json({
+                success: false,
+                message: 'Error Category not empty.',
+            })
+        }
     } catch (e) {
         errorHandler(res, e)
     }

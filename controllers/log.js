@@ -26,7 +26,11 @@ module.exports.getAll = async function (req, res) {
 
 module.exports.remove = async function (req, res) {
     try {
-        await Log.remove({ _id: req.params.id })
+        const logs = await Log.find()
+        for (let item of logs) {
+            await Log.remove({ _id: item._id })
+        }
+
         res.status(200).json({
             message: 'Log delated.',
         })

@@ -2,3 +2,25 @@
     border-bottom: 1px solid #42a5f5;
     margin-bottom: 50px;
 }
+.card {
+    width: 300px;
+    vertical-align: top;
+    padding: 20px;
+    margin-bottom: 50px;
+    &__title {
+        text-transform: uppercase;
+        margin-bottom: 20px;
+    }
+    &__img {
+        display: inline-block;
+        width: 40%;
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+    &__description {
+        display: inline-block;
+        vertical-align: top;
+    }
+}

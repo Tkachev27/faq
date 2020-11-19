@@ -22,6 +22,28 @@ module.exports.getByQuestion = async function (req, res) {
         errorHandler(res, e)
     }
 }
+module.exports.getByQuestionUser = async function (req, res) {
+    try {
+        resAnswers = []
+        const answers = await Answer.find({ questionId: req.params.id })
+
+        for (let answer of answers) {
+            let obj = {
+                answer: answer,
+                admin:
+                    req.user._id == answer.userId ||
+                    req.user._id == '5e551539ff68dc2550dbd36f'
+                        ? true
+                        : false,
+            }
+            resAnswers.push(obj)
+        }
+
+        res.status(200).json(resAnswers)
+    } catch (e) {
+        errorHandler(res, e)
+    }
+}
 
 module.exports.remove = async function (req, res) {
     try {

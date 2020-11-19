@@ -12,6 +12,9 @@ export class QuestionService {
     fetch(categoryId: string): Observable<Question[]> {
         return this.http.get<Question[]>(`/api/question/all/${categoryId}`)
     }
+    find(req: string): Observable<Question[]> {
+        return this.http.get<Question[]>(`/api/question/find/${req}`)
+    }
     getById(id: String): Observable<Question> {
         return this.http.get<Question>(`/api/question/${id}`)
     }

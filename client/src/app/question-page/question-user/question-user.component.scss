@@ -14,3 +14,10 @@
         cursor: pointer;
     }
 }
+
+input[type~='text'] {
+    font-size: 40px;
+}
+.edit i {
+    cursor: pointer;
+}

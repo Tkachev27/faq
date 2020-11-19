@@ -9,6 +9,16 @@ router.post(
     controller.create
 )
 router.get('/all/:id', controller.getAll)
+router.get(
+    '/user/:id',
+    passport.authenticate('jwt', { session: false }),
+    controller.getByIdUser
+)
+router.get(
+    '/find/:id',
+
+    controller.getByFind
+)
 router.get('/:id', controller.getById)
 
 router.delete(

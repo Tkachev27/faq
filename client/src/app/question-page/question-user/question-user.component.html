@@ -4,7 +4,23 @@
     </div>
     <div class="content" *ngIf="!loading; else loader">
         <div class="question col s12">
-            <h3 class="center"> {{ question.content }}</h3>
+            <div class="edit center" *ngIf="admin">
+                <input
+                    class="center questionInput"
+                    type="text"
+                    [(ngModel)]="question.content"
+                />
+                <i
+                    class="material-icons"
+                    *ngIf="question.content != ''"
+                    (click)="onEditQuestion()"
+                    >check</i
+                >
+            </div>
+
+            <h3 *ngIf="!admin" class="center">
+                {{ question.content }}
+            </h3>
             <div class="content-fields col s3">
                 <div class="content__item"
                     >Viewed: {{ question.viewedNumber }}</div
@@ -17,7 +33,23 @@
         </div>
         <div class="answers col s12" *ngIf="answers.length !== 0; else empty">
             <div class="answer" *ngFor="let answer of answers">
-                <h4 class="center"> {{ answer.answer.content }}</h4>
+                <div class="edit center" *ngIf="answer.admin">
+                    <input
+                        class="center questionInput"
+                        type="text"
+                        [(ngModel)]="answer.answer.content"
+                    />
+                    <i
+                        class="material-icons"
+                        *ngIf="answer.answer.content != ''"
+                        (click)="onEditAnswer(answer)"
+                        >check</i
+                    >
+                </div>
+
+                <h4 class="center" *ngIf="!answer.admin">
+                    {{ answer.answer.content }}</h4
+                >
                 <div class="delete" *ngIf="answer.admin">
                     <i
                         class="material-icons"

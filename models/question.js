@@ -25,6 +25,11 @@ const questionSchema = new Schema({
         type: String,
         required: true,
     },
+    answersAmount: {
+        type: Number,
+        required: true,
+        default: 0,
+    },
 })
 
 module.exports = mongoose.model('question', questionSchema)

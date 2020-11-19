@@ -38,7 +38,7 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
     }
     onSearchStart() {
         if (this.searchPhrase) {
-            this.router.navigate(['/adminsearch', this.searchPhrase])
+            this.router.navigate([`/adminsearch/${this.searchPhrase}`])
         }
     }
     onSearchCancel() {

@@ -8,6 +8,11 @@ router.post(
     passport.authenticate('jwt', { session: false }),
     controller.create
 )
+router.get(
+    '/user/:id',
+    passport.authenticate('jwt', { session: false }),
+    controller.getByQuestionUser
+)
 router.get('/:id', controller.getByQuestion)
 
 router.delete(

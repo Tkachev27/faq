@@ -15,7 +15,7 @@ router.get(
 )
 
 router.delete(
-    '/:id',
+    '/',
     passport.authenticate('jwt', { session: false }),
     controller.remove
 )

@@ -52,8 +52,22 @@ export class QuestionUserComponent implements OnInit {
             })
     }
     newAnswerCreated(answer: Answer) {
-        this.answers.push(answer)
+        this.answers.push({ answer: answer, admin: true })
+        console.log(this.answers)
+        this.question.answersAmount++
+
         this.logService.create({ action: `answer created` }).subscribe(() => {})
+    }
+    onEditQuestion() {
+        if (this.question.content != '') {
+            this.questionService.update(this.question).subscribe(
+                (question) => {
+                    this.question = question
+                    MaterialService.toast('Question updated')
+                },
+                (error) => MaterialService.toast(error.error.message)
+            )
+        }
     }
     onDeleteAnswer(answer: Answer) {
         const decision = window.confirm(`Delete answer?`)
@@ -61,6 +75,7 @@ export class QuestionUserComponent implements OnInit {
             this.answerService.delete(answer).subscribe(
                 (response) => {
                     MaterialService.toast(response.message)
+                    this.question.answersAmount--
                     this.logService
                         .create({ action: `answer deleted` })
                         .subscribe(() => {})
@@ -68,6 +83,22 @@ export class QuestionUserComponent implements OnInit {
                         this.answers.findIndex((p) => p._id == answer._id),
                         1
                     )
+                },
+                (error) => MaterialService.toast(error.error.message)
+            )
+        }
+    }
+    onEditAnswer(answer: any) {
+        if (answer.answer.content != '') {
+            this.answerService.update(answer.answer).subscribe(
+                (answer) => {
+                    this.answers[
+                        this.answers.findIndex(
+                            (p) => p.answer._id == answer._id
+                        )
+                    ].answer = answer
+
+                    MaterialService.toast('Question updated')
                 },
                 (error) => MaterialService.toast(error.error.message)
             )
