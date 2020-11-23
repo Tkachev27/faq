@@ -38,26 +38,33 @@ module.exports.login = async function (req, res) {
 }
 
 module.exports.register = async function (req, res) {
-    const candidate = await User.findOne({ email: req.body.email })
+    const users = await User.find()
+    if (users.lenght < 3) {
+        const candidate = await User.findOne({ email: req.body.email })
 
-    if (candidate) {
-        res.status(409).json({
-            message: 'This email is already taken. Try another one.',
-        })
-    } else {
-        const salt = bcrypt.genSaltSync(10)
-        const password = req.body.password
-        const user = new User({
-            admin: false,
-            email: req.body.email,
-            password: bcrypt.hashSync(password, salt),
-        })
+        if (candidate) {
+            res.status(409).json({
+                message: 'This email is already taken. Try another one.',
+            })
+        } else {
+            const salt = bcrypt.genSaltSync(10)
+            const password = req.body.password
+            const user = new User({
+                admin: false,
+                email: req.body.email,
+                password: bcrypt.hashSync(password, salt),
+            })
 
-        try {
-            await user.save()
-            res.status(201).json(user)
-        } catch (e) {
-            errorHandler(res, e)
+            try {
+                await user.save()
+                res.status(201).json(user)
+            } catch (e) {
+                errorHandler(res, e)
+            }
         }
+    } else {
+        res.status(409).json({
+            message: 'Accounts number limit',
+        })
     }
 }
