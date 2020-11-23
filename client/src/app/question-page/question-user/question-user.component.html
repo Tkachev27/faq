@@ -61,13 +61,16 @@
                 <div class="content__item">Date: {{ answer.answer.date }}</div>
             </div>
         </div>
+
         <ng-template #empty>
             <div class="center">There are no Answers </div>
         </ng-template>
+
         <app-create-modal
             class="col s10 offset-s1"
             [id]="question._id"
             [page]="page"
+            [user]="user"
             [service]="answerService"
             (onChangeEvent)="newAnswerCreated($event)"
         ></app-create-modal>

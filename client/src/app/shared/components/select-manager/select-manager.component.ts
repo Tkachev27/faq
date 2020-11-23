@@ -18,7 +18,7 @@ export class SelectManagerComponent implements OnInit {
     constructor(private router: Router) {}
 
     ngOnInit(): void {
-        this.admin = this.user == 'admin' ? true : false
+        this.admin = localStorage.userType == 'admin' ? true : false
     }
 
     onDelete(item: Question) {

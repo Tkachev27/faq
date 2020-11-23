@@ -22,6 +22,9 @@ export class AuthService {
                 localStorage.setItem('auth-token', token)
                 let usrname = user.email
                 localStorage.setItem('user', usrname)
+                let userType =
+                    user.email == '12admin34@gmail.com' ? 'admin' : 'user'
+                localStorage.setItem('userType', userType)
                 this.setToken(token)
             })
         )
@@ -39,7 +42,7 @@ export class AuthService {
         return !!this.token
     }
     isAdmin(): boolean {
-        return localStorage.user == '175.9@mail.ru'
+        return localStorage.userType == 'admin'
     }
 
     logout() {

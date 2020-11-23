@@ -34,6 +34,8 @@ export class CreateModalComponent implements OnInit, AfterViewInit, OnDestroy {
     constructor() {}
 
     ngOnInit(): void {
+        console.log(this.user)
+
         this.loadingModal = true
         this.form = new FormGroup({
             content: new FormControl('', Validators.required),

@@ -19,7 +19,6 @@ export class QuestionPageComponent implements OnInit {
     page = 'question'
     newCategoryName = ''
 
-    isAdmin = false
     user = ''
 
     constructor(
@@ -32,10 +31,8 @@ export class QuestionPageComponent implements OnInit {
     async ngOnInit() {
         this.loading = true
 
-        this.user = this.auth.isAuthenticated() ? 'user' : ''
-        this.user =
-            this.auth.isAuthenticated() && this.auth.isAdmin() ? 'admin' : ''
-        this.isAdmin = this.auth.isAdmin()
+        this.user = localStorage.userType ? localStorage.userType : ''
+
         let categoriesPromise = new Promise<Array<Category>>(
             (resolve, reject) => {
                 this.categoryService.fetch().subscribe(

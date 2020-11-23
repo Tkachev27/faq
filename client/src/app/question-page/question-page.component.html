@@ -3,7 +3,7 @@
         <h2> Questions </h2>
     </div>
     <div class="content" *ngIf="!loading; else loader">
-        <div class="category-create-input col s3" *ngIf="isAdmin">
+        <div class="category-create-input col s3" *ngIf="user == 'admin'">
             <span>Create new category: </span
             ><input type="text" [(ngModel)]="newCategoryName" />
             <i *ngIf="newCategoryName == ''" class="material-icons invalid"
@@ -31,7 +31,7 @@
                 >
                 <i
                     class="material-icons"
-                    *ngIf="isAdmin"
+                    *ngIf="user == 'admin'"
                     (click)="onDeleteCategory(category)"
                 >
                     close</i

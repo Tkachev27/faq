@@ -18,6 +18,7 @@ export class QuestionUserComponent implements OnInit {
     question: Question
     admin = false
     page = 'answer'
+    user = ''
     answers: Array<any> = []
     constructor(
         private route: ActivatedRoute,
@@ -29,6 +30,7 @@ export class QuestionUserComponent implements OnInit {
     ngOnInit(): void {
         this.loading = true
 
+        this.user = localStorage.userType ? localStorage.userType : ''
         this.route.params
             .pipe(
                 switchMap((params: Params) => {

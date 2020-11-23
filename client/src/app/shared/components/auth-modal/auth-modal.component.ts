@@ -66,7 +66,9 @@ export class AuthModalComponent implements OnInit, OnDestroy, AfterViewInit {
         if (this.login) {
             this.aSub = this.auth.login(this.form.value).subscribe(
                 () => {
-                    if (localStorage.user == '12admin34@gmail.com') {
+                    console.log(localStorage.user)
+
+                    if (this.auth.isAdmin()) {
                         this.router.navigate(['/adminhome'])
                     } else if (localStorage.user) {
                         this.router.navigate(['/userhome'])

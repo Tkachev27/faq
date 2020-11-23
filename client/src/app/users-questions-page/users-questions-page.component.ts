@@ -18,7 +18,6 @@ export class UsersQuestionsPageComponent implements OnInit {
     page = 'question'
     newCategoryName = ''
 
-    isAdmin = false
     user = ''
 
     constructor(
@@ -30,10 +29,9 @@ export class UsersQuestionsPageComponent implements OnInit {
     async ngOnInit() {
         this.loading = true
 
-        this.user = this.auth.isAuthenticated() ? 'user' : ''
-        this.user =
-            this.auth.isAuthenticated() && this.auth.isAdmin() ? 'admin' : ''
-        this.isAdmin = this.auth.isAdmin()
+        this.user = this.user = localStorage.userType
+            ? localStorage.userType
+            : ''
 
         let questionsPromise = new Promise<Array<Category>>(
             (resolve, reject) => {

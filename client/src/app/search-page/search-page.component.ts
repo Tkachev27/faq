@@ -24,9 +24,7 @@ export class SearchPageComponent implements OnInit {
 
     ngOnInit(): void {
         this.loading = true
-        this.user = this.auth.isAuthenticated() ? 'user' : ''
-        this.user =
-            this.auth.isAuthenticated() && this.auth.isAdmin() ? 'admin' : ''
+        this.user = localStorage.userType ? localStorage.userType : ''
         this.route.params
             .pipe(
                 switchMap((params: Params) => {

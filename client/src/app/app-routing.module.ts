@@ -39,7 +39,7 @@ const routes: Routes = [
             { path: '', redirectTo: '/userhome', pathMatch: 'full' },
             { path: 'userhome', component: HomePageComponent },
             { path: 'userquestions', component: QuestionPageComponent },
-            { path: 'userquestions/:id', component: QuestionComponent },
+            { path: 'userquestions/:id', component: QuestionUserComponent },
             { path: 'usermyquestions', component: UsersQuestionsPageComponent },
             { path: 'usermyquestions/:id', component: QuestionUserComponent },
             { path: 'userabout', component: AboutPageComponent },
