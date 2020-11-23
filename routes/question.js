@@ -10,6 +10,12 @@ router.post(
 )
 router.get('/all/:id', controller.getAll)
 router.get(
+    '/alllist',
+    passport.authenticate('jwt', { session: false }),
+    controller.alllist
+)
+
+router.get(
     '/user/:id',
     passport.authenticate('jwt', { session: false }),
     controller.getByIdUser

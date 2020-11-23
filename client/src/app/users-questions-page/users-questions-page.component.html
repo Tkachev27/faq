@@ -1,1 +1,16 @@
-<p>users-questions-page works!</p>
+<div class="row">
+    <div class="center header">
+        <h2> Questions </h2>
+    </div>
+    <div class="content" *ngIf="!loading; else loader">
+        <app-select-manager
+            class="col s10 offset-s1"
+            [items]="questions"
+            [user]="user"
+            (onDeleteEvent)="onDeleteQuestion($event)"
+        ></app-select-manager>
+    </div>
+    <ng-template #loader>
+        <app-loader></app-loader>
+    </ng-template>
+</div>

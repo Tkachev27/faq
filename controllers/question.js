@@ -130,3 +130,18 @@ module.exports.getByFind = async function (req, res) {
         errorHandler(res, e)
     }
 }
+module.exports.alllist = async function (req, res) {
+    try {
+        let questions = await Question.find({ userId: req.user.id })
+
+        for (let question of questions) {
+            const answers = await Answer.find({ questionId: question._id })
+
+            question.answersAmount = answers.length
+        }
+
+        res.status(200).json(questions)
+    } catch (e) {
+        errorHandler(res, e)
+    }
+}
