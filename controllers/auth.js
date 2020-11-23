@@ -39,12 +39,13 @@ module.exports.login = async function (req, res) {
 
 module.exports.register = async function (req, res) {
     const users = await User.find()
-    if (users.lenght < 3) {
+    console.log(users.lenght)
+    if (users.length < 3) {
         const candidate = await User.findOne({ email: req.body.email })
 
         if (candidate) {
             res.status(409).json({
-                message: 'This email is already taken. Try another one.',
+                message: 'This email is already taken. Try another one. ',
             })
         } else {
             const salt = bcrypt.genSaltSync(10)
