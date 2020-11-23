@@ -68,7 +68,7 @@ export class AuthModalComponent implements OnInit, OnDestroy, AfterViewInit {
                 () => {
                     if (localStorage.user == '12admin34@gmail.com') {
                         this.router.navigate(['/adminhome'])
-                    } else {
+                    } else if (localStorage.user) {
                         this.router.navigate(['/userhome'])
                     }
 
