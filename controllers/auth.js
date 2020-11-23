@@ -39,7 +39,6 @@ module.exports.login = async function (req, res) {
 
 module.exports.register = async function (req, res) {
     const users = await User.find()
-    console.log(users.lenght)
     if (users.length < 3) {
         const candidate = await User.findOne({ email: req.body.email })
 
